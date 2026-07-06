@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Women's Wear</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        if (!localStorage.getItem('user')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: pink;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .back-button {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: purple;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .products {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .product {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-align: center;
+            width: 150px;
+        }
+        .images {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .product-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .images img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .like-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background: purple;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cart-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="location.href='index.html'">Back to Home</button>
+        <h1>Women's Wear</h1>
+        <div class="products">
+            <div class="product" onclick="showImages('sarees')">Sarees</div>
+            <div class="product" onclick="showImages('skirts')">Skirts</div>
+            <div class="product" onclick="showImages('dresses')">Dresses</div>
+        </div>
+        <div id="sarees" class="images">
+            <div class="product-card">
+                <img src="images/saree1.jpg" alt="GADWAL SAREE">
+                <p>GADWAL SAREE - Rs.4000</p>
+                <button class="addtocart-button" onclick="addtocart('GADWAL SAREE - Rs.4000')">AddToCart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/saree2.jpg" alt="BRIDAL SAREE">
+                <p>BRIDAL SAREE - Rs.4500</p>
+                <button class="addtocart-button" onclick="addtocart('BRIDAL SAREE - Rs.4500')">AddToCart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/saree3.jpg" alt="COTTON SAREE">
+                <p>COTTON SAREE - Rs.2500</p>
+                <button class="addtocart-button" onclick="addtocart('COTTON SAREE - Rs.2500')">AddToCart</button>
+            </div>
+        </div>
+        <div id="skirts" class="images">
+            <div class="product-card">
+                <img src="images/skirt1.jpg" alt="White Skirt">
+                <p>White Skirt - Rs.250</p>
+                <button class="addtocart-button" onclick="addtocart('Skirt 1 - $50')">AddToCart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/skirt2.jpg" alt="Skirt">
+                <p>Skirt - RS.550</p>
+                <button class="addtocart-button" onclick="addtocart('Skirt - RS.550')">AddToCart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/skirt3.jpg" alt="Black Skirt">
+                <p>Black Skirt - RS.600</p>
+                <button class="addtocart-button" onclick="addtocart('Black Skirt - RS.600')">AddToCart</button>
+            </div>
+        </div>
+        <div id="dresses" class="images">
+            <div class="product-card">
+                <img src="images/dress1.jpg" alt="LONG FORK">
+                <p>LONG FORK - Rs.2500</p>
+                <button class="addtocart-button" onclick="addtocart('LONG FORK - Rs.2500')">AddToCart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/dress2.jpg" alt="LEHANGA">
+                <p>LEHANGA - Rs.7500</p>
+                <button class="addtocart-button" onclick="addtocart('LEHANGA - Rs.7500')">AddToCart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/dress3.jpg" alt="WEDDING DRESS">
+                <p>WEDDING DRESS - Rs.8000</p>
+                <button class="addtocart-button" onclick="addtocart('WEDDING DRESS - Rs.8000')">AddToCart</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showImages(category) {
+            document.querySelectorAll('.images').forEach(el => el.style.display = 'none');
+            document.getElementById(category).style.display = 'grid';
+        }
+
+        function addtocart(product) {
+            let likedProducts = JSON.parse(localStorage.getItem('likedProducts')) || [];
+            if (!likedProducts.includes(product)) {
+                likedProducts.push(product);
+                localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
+                alert(product + ' added to cart products!');
+            } else {
+                alert(product + ' is added to cart');
+            }
+        }
+    </script>
+</body>
+</html>

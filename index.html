@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: pink; }
+        .container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; }
+        .welcome-message { text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 20px; color: #333; }
+        .categories { display: flex; gap: 20px; margin-bottom: 20px; }
+        .category { padding: 10px 20px; background: #fff; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .products { display: flex; gap: 20px; flex-wrap: wrap; }
+        .product-card { background: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 150px; }
+        .product-card img { width: 100px; height: auto; border-radius: 5px; }
+        .cart { margin-left: 20px; background: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 10px; width: 300px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .cart h2 { text-align: center; }
+    </style>
+    <script>
+        let totalPrice = 0;
+        function addToCart(product, price) {
+            const cartList = document.getElementById('cart-items');
+            const item = document.createElement('li');
+            item.textContent = `${product} - $${price}`;
+            cartList.appendChild(item);
+            totalPrice += price;
+            document.getElementById('total-price').textContent = `Total: $${totalPrice}`;
+        }
+    </script>
+</head>
+<body>
+    <!-- Welcome Message -->
+    <div class="welcome-message">Welcome to Online Shopping Cart</div>
+
+    <div class="container">
+        <div class="categories">
+            <div class="category" onclick="location.href='mens-wear.html'">Men's Wear</div>
+            <div class="category" onclick="location.href='womens-wear.html'">Women's Wear</div>
+            <div class="category" onclick="location.href='footwear.html'">Footwear</div>
+            <div class="category" onclick="location.href='accessories.html'">Accessories</div>
+            <div class="category" onclick="location.href='jewellery.html'">Jewellery</div>
+            <div class="category" onclick="location.href='kitchen-wear.html'">Kitchen</div>
+            <div class="category" onclick="location.href='children-wear.html'">Children</div>
+        </div>
+        <div class="products">
+                       <div class="product-card">
+                <img src="images/saree.jpg" alt="SAREE">
+                <p>SAREE - Rs.500</p>
+                <button onclick="addToCart('SAREE', 500)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/kurti.jpg" alt="KURTI SET">
+                <p>KURTI SET - Rs.399</p>
+                <button onclick="addToCart('KURTI SET', 399)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/menshirt.jpg" alt="T SHIRT">
+                <p>T SHIRT - Rs.300</p>
+                <button onclick="addToCart('T SHIRT', 300)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/blueblazer.jpg" alt="BLUE BLAZER">
+                <p>BLUE BLAZER - Rs.999</p>
+                <button onclick="addToCart('BLUE BLAZAR', 999)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/sunglasses.jpg" alt="SUN GLASSES">
+                <p>SUN GLASSES - RS.500</p>
+                <button onclick="addToCart('SUN GLASSES', 500)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/babydress.jpg" alt="PURPLE BABY DRESS">
+                <p>PURPLE BABY DRESS - Rs.699</p>
+                <button onclick="addToCart('PURPLE BABY DRESS', 699)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/giftset.jpg" alt="GIFT SET">
+                <p>GIFT SET - Rs.599</p>
+                <button onclick="addToCart('GIFT SET', 599)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/nailpolish.jpg" alt="NAIL POLISH">
+                <p>NAIL POLISH - Rs.150</p>
+                <button onclick="addToCart('NAIL POLISH', 150)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/homedecor.jpg" alt="SHOW PIECES">
+                <p>SHOW PIECES - Rs.399</p>
+                <button onclick="addToCart('SHOW PIECES', 399)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/handbag.jpg" alt="HAND BAG">
+                <p>HAND BAG - Rs.500</p>
+                <button onclick="addToCart('HAND BAG', 500)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/curtain.jpg" alt="CURTAINS">
+                <p>CURTAINS - Rs.250</p>
+                <button onclick="addToCart('CURTAINS', 250)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/utensils.jpg" alt="KITCHEN UTENSILS">
+                <p>KITCHEN UTENSILS - Rs.499</p>
+                <button onclick="addToCart('KITCHEN UTENSILS', 499)">Add to Cart</button>
+            </div>
+        </div>
+<h2>Your Cart</h2>
+    <a href="cart.html"><button>Go to Cart</button></a>
+    <script src="script.js"></script>
+</body>
+</html>
+        

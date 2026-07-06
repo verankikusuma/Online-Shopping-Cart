@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Accessories Section</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: pink; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .categories { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; }
+        .category { padding: 10px 20px; background: #fff; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .products { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .product-card { background: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 150px; }
+        .product-card img { width: 100px; height: auto; border-radius: 5px; }
+        .back-btn { display: block; margin: 20px auto; padding: 10px 20px; background: purple; color: #fff; text-decoration: none; border-radius: 5px; text-align: center; width: 200px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Accessories Section</h1>
+        <div class="categories">
+            <div class="category" onclick="displayProducts('makeupKits')">Makeup Kits</div>
+            <div class="category" onclick="displayProducts('beautyProducts')">Beauty Products</div>
+            <div class="category" onclick="displayProducts('perfumes')">Perfumes</div>
+        </div>
+        <div id="product-list" class="products"></div>
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </div>
+
+    <script>
+        const products = {
+    makeupKits: [
+        { name: "Makeup Kit A", price: 500, image: "images/makeupkit-a.jpg" },
+        { name: "Makeup Kit B", price: 600, image: "images/makeupkit-b.jpg" },
+        { name: "Makeup Kit C", price: 700, image: "images/makeupkit-c.jpg" }
+    ],
+    beautyProducts: [
+        { name: "Beauty Product A", price: 200, image: "images/beautyproduct-a.jpg" },
+        { name: "Beauty Product B", price: 300, image: "images/beautyproduct-b.jpg" },
+        { name: "Beauty Product C", price: 400, image: "images/beautyproduct-c.jpg" }
+    ],
+    perfumes: [
+        { name: "Perfume A", price: 350, image: "images/perfume-a.jpg" },
+        { name: "Perfume B", price: 450, image: "images/perfume-b.jpg" },
+        { name: "Perfume C", price: 550, image: "images/perfume-c.jpg" }
+    ]
+};
+
+function displayProducts(category) {
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = ''; // Clear previous products
+
+    products[category].forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        const img = document.createElement('img');
+        img.src = product.image;
+        img.alt = product.name;
+
+        const name = document.createElement('p');
+        name.textContent = `${product.name} - Rs.${product.price}`;
+
+        const button = document.createElement('button');
+        button.textContent = "Add to Cart";
+        button.onclick = () => addToCart(product.name, product.price);
+
+        productCard.appendChild(img);
+        productCard.appendChild(name);
+        productCard.appendChild(button);
+
+        productList.appendChild(productCard);
+    });
+}
+
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ name, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${name} has been added to the cart!`);
+}
+
+
+
+    </script>
+</body>
+</html>
+

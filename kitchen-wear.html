@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kitchen Section</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: pink; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .categories { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; }
+        .category { padding: 10px 20px; background: #fff; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .products { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .product-card { background: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 150px; }
+        .product-card img { width: 100px; height: auto; border-radius: 5px; }
+        .back-btn { display: block; margin: 20px auto; padding: 10px 20px; background: purple; color: #fff; text-decoration: none; border-radius: 5px; text-align: center; width: 200px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kitchen Section</h1>
+        <div class="categories">
+            <div class="category" onclick="displayProducts('lunchBoxes')">Lunch Boxes</div>
+            <div class="category" onclick="displayProducts('teaCups')">Tea Cups</div>
+            <div class="category" onclick="displayProducts('plates')">Plates</div>
+        </div>
+        <div id="product-list" class="products"></div>
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </div>
+
+    <script>
+        const products = {
+            lunchBoxes: [
+                { name: "Lunch Box", price: "Rs.150", image: "images/lunchbox-a.jpg" },
+                { name: "Lunch Box", price: "Rs.200", image: "images/lunchbox-b.jpg" },
+                { name: "Lunch Box", price: "Rs.250", image: "images/lunchbox-c.jpg" }
+            ],
+            teaCups: [
+                { name: "Tea Cup", price: "Rs.99", image: "images/teacup-a.jpg" },
+                { name: "Tea Cup", price: "Rs.100", image: "images/teacup-b.jpg" },
+                { name: "Tea Cup", price: "Rs.150", image: "images/teacup-c.jpg" }
+            ],
+            plates: [
+                { name: "Plate A", price: "Rs.199", image: "images/plate-a.jpg" },
+                { name: "Plate B", price: "Rs.89", image: "images/plate-b.jpg" },
+                { name: "Plate C", price: "Rs.99", image: "images/plate-c.jpg" }
+            ]
+        };
+
+        function displayProducts(category) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            products[category].forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <p>${product.name} - ${product.price}</p>
+                    <button onclick="addtocart('${product.name}')">AddToCart</button>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
+
+        function addtocart(productName) {
+            alert(`${productName} has been added to cart products!`);
+        }
+    </script>
+</body>
+</html>
